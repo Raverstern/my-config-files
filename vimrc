@@ -301,6 +301,9 @@ augroup filetype_gnu_arm
 	autocmd!
 	autocmd BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 	autocmd FileType arm setlocal number
+	" disable <tab> in YouCompleteMe, since huge <tab> uses in assembly programming
+	autocmd FileType arm let g:ycm_key_list_select_completion = ['<Down>']
+	autocmd FileType arm let g:ycm_key_list_previous_completion = ['<Up>']
 augroup END
 " }}}
 
