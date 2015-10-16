@@ -300,7 +300,7 @@ augroup END
 augroup filetype_gnu_arm
 	autocmd!
 	autocmd BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
-	autocmd FileType markdown setlocal number
+	autocmd FileType arm setlocal number
 augroup END
 " }}}
 
