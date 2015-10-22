@@ -44,5 +44,10 @@ unzip $VIMDIR/taglist_46.zip
 # generate help tags
 cd $VIMDIR/doc
 vim "+helptags ." +qall
-cd $PWD
 
+# patch the old and buggy WindowsManager
+cd $VIMDIR/bundle/winmanager/plugin
+patch -p0 < $ROOT/winmanager.patch
+
+# return to the original place
+cd $PWD

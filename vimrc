@@ -23,6 +23,16 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 " GNU ARM assembly syntax highlighting
 Plugin 'ARM9/arm-syntax-vim'
+" NERD Tree File Explorer
+Plugin 'scrooloose/nerdtree'
+" WinManager
+Plugin 'winmanager'
+" BufExplorer
+Plugin 'bufexplorer.zip'
+" AirLine
+Plugin 'bling/vim-airline'
+" Molokai (Only for GUI)
+Plugin 'tomasr/molokai'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -143,15 +153,13 @@ if !exists(":DiffOrig")
 endif
 " }}}
 
-" Taglist (using ctags) ----------------------------{{{
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1 
-noremap <silent> <F9> :TlistToggle<cr> 
-" }}}
-
 " Basic Settings ------------------------------------{{{
+if has("gui_running")
+	colorscheme molokai
+else
+	colorscheme evening
+endif
+
 let mapleader = "-"
 let maplocalleader = "\\"
 
@@ -217,6 +225,48 @@ onoremap al) :<c-u>normal! F)va(<cr>
 " }}}
 
 "}}}
+
+" Taglist (using ctags) ----------------------------{{{
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+noremap <silent> <F9> :TlistToggle<cr> 
+" }}}
+
+" Config AirLine ------------------------------{{{
+set laststatus=2
+" }}}
+
+" Config Winmanager & NERDTree --------------------------------{{{
+" WinManager Part ------------------------------{{{
+let g:winManagerWindowLayout="NERDTree|TagList"
+let g:winManagerWidth=35
+let g:persistentBehaviour=0
+nnoremap <leader>wm :WMToggle<CR>
+" }}}
+
+" NERDTree Part -------------------------{{{
+let g:NERDTree_title="[NERDTree]"
+
+function! NERDTree_Start()  
+    exec 'NERDTree'  
+endfunction
+
+function! NERDTree_IsValid()  
+    return 1  
+endfunction
+" }}}
+
+" }}}
+
+" YouCompleteMe ----------------------{{{
+let g:ycm_warning_symbol = '>*'
+nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F4> :YcmDiags<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" }}}
 
 " force me to change habit ----------------------------------{{{
 "inoremap <esc> <nop>
