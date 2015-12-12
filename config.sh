@@ -1,7 +1,7 @@
 #! /bin/bash
 
-PWD=$(pwd)
-ROOT=$(cd `dirname $0`; pwd) # must be absolute path
+PWD=$(pwd) # current directory
+ROOT=$(cd `dirname $0`; pwd) # path of the repo; must be absolute
 VIMDIR='~/.vim'
 
 # detect if git has been installed, complain and quit if no.
@@ -22,28 +22,31 @@ then
 	git clone https://github.com/VundleVim/Vundle.vim.git $VIMDIR/bundle/Vundle.vim
 fi
 
-# detect if there's .vimrc existing, back up if yes.
-if [ -f ~/.vimrc ]
+# detect if there's a real .vimrc existing, back it up if yes.
+if [ -f ~/.vimrc -a ! -L ~/.vimrc ]
 then
-	echo '.vimrc file exists. Backing it up.'
+	echo 'A real .vimrc file exists. Back it up.'
 	mv --backup=numbered ~/.vimrc ~/.vimrc.backup
 fi
 
 # create symlinks.
-ln -s $ROOT/vimrc		~/.vimrc
+ln -sf $ROOT/vimrc		~/.vimrc
 ln -sf $ROOT/grep-operator.vim	$VIMDIR/plugin/grep-operator.vim
 ln -sf $ROOT/toggle.vim		$VIMDIR/plugin/toggle.vim
 
-# run the "PluginInstall" command
+# run "PluginInstall" command of Vundle
 vim +PluginInstall! +qall
 
-# installing Taglist 4.6
-TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
-wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
-unzip $VIMDIR/taglist_46.zip
-# generate help tags
-cd $VIMDIR/doc
-vim "+helptags ." +qall
+# install Taglist 4.6 if it has not been installed.
+if [ ! -f $VIMDIR/taglist.vim ]
+then
+	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
+	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
+	unzip $VIMDIR/taglist_46.zip # adding taglist.vim into plugin/, and taglist.txt into doc/
+	# generate help tags
+	cd $VIMDIR/doc
+	vim "+helptags ." +qall
+fi
 
 # patch the old and buggy WindowsManager
 cd $VIMDIR/bundle/winmanager/plugin

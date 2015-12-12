@@ -286,7 +286,7 @@ iabbrev @@ ricky.gong@foxmail.com
 " copyright declaration
 iabbrev ccopy Copyright 2015 Ricky Gong, all rights reserved.
 " signature
-iabbrev ssig ----- <cr>Ricky Gong<cr>SMIE, Sun Yat-sen University<cr>ricky.gong@foxmail.com
+iabbrev ssig ----- <cr>Ricky Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
 " }}}
 
 " FileType-specific Settings -------------------------------------------{{{
@@ -351,9 +351,16 @@ augroup filetype_gnu_arm
 	autocmd!
 	autocmd BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 	autocmd FileType arm setlocal number
-	" disable <tab> in YouCompleteMe, since huge <tab> uses in assembly programming
+	" disable <tab> in YouCompleteMe, since <tab> is frequently used in assembly programming
 	autocmd FileType arm let g:ycm_key_list_select_completion = ['<Down>']
 	autocmd FileType arm let g:ycm_key_list_previous_completion = ['<Up>']
+augroup END
+" }}}
+
+" Shell Scripts file settings ----------------------------------------------------{{{
+augroup filetype_gnu_arm
+	autocmd!
+	autocmd FileType sh setlocal number
 augroup END
 " }}}
 
