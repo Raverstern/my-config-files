@@ -6,7 +6,8 @@
 " To use it, copy it to
 "     for Unix and OS/2:  ~/.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
-    
+
+" ==============================================================================
 " Vundle Config ----------------------------------------------{{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -65,8 +66,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " }}}
-
-" Based on an example. -------------------------------------------{{{
+" ==============================================================================
+" Based on the officially provided example {{{
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -152,8 +153,8 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 " }}}
-
-" Basic Settings ------------------------------------{{{
+" ==============================================================================
+" Basic Settings {{{
 if has("gui_running")
 	colorscheme molokai
 else
@@ -225,19 +226,19 @@ onoremap al) :<c-u>normal! F)va(<cr>
 " }}}
 
 "}}}
-
-" Taglist (using ctags) ----------------------------{{{
+" ==============================================================================
+" Taglist (using ctags) {{{
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 noremap <silent> <F9> :TlistToggle<cr> 
 " }}}
-
-" Config AirLine ------------------------------{{{
+" ==============================================================================
+" Config AirLine {{{
 set laststatus=2
 " }}}
-
-" Config Winmanager & NERDTree --------------------------------{{{
+" ==============================================================================
+" Config Winmanager & NERDTree {{{
 " WinManager Part ------------------------------{{{
 let g:winManagerWindowLayout="NERDTree|TagList"
 let g:winManagerWidth=35
@@ -258,8 +259,8 @@ endfunction
 " }}}
 
 " }}}
-
-" YouCompleteMe ----------------------{{{
+" ==============================================================================
+" YouCompleteMe {{{
 let g:ycm_warning_symbol = '>*'
 nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yf :YcmCompleter GoToDefinition<CR>
@@ -267,8 +268,8 @@ nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F4> :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 " }}}
-
-" force me to change habit ----------------------------------{{{
+" ==============================================================================
+" force me to change habit {{{
 "inoremap <esc> <nop>
 inoremap <up> <nop>
 inoremap <down> <nop>
@@ -279,8 +280,8 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 " }}}
-
-" Personal information -------------------------------------------{{{
+" ==============================================================================
+" Personal information {{{
 " e-mail address
 iabbrev @@ ricky.gong@foxmail.com
 " copyright declaration
@@ -288,8 +289,8 @@ iabbrev ccopy Copyright 2015 Ricky Gong, all rights reserved.
 " signature
 iabbrev ssig ----- <cr>Ricky Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
 " }}}
-
-" FileType-specific Settings -------------------------------------------{{{
+" ==============================================================================
+" FileType-specific Settings {{{
 
 " C file settings -----------------------------------------------{{{
 augroup filetype_c
@@ -331,6 +332,9 @@ augroup filetype_python
 	autocmd!
 	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 	autocmd FileType python setlocal number
+	" 4 spaces for showing, auto-indenting and expanding a tab
+	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
+	autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 augroup END
 " }}}
 
@@ -365,4 +369,4 @@ augroup END
 " }}}
 
 " }}}
-
+" ==============================================================================
