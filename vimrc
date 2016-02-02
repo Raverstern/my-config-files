@@ -225,6 +225,8 @@ onoremap al( :<c-u>normal! F)va(<cr>
 onoremap al) :<c-u>normal! F)va(<cr>
 " }}}
 
+" always show relative line number of the left
+set relativenumber
 "}}}
 " ==============================================================================
 " Taglist (using ctags) {{{
