@@ -264,6 +264,9 @@ endfunction
 " ==============================================================================
 " YouCompleteMe {{{
 let g:ycm_warning_symbol = '>*'
+" Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
+let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
+let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>yf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -334,6 +337,7 @@ augroup filetype_python
 	autocmd!
 	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 	autocmd FileType python setlocal number
+	autocmd FileType python set foldmethod=indent
 	" 4 spaces for showing, auto-indenting and expanding a tab
 	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
 	autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
