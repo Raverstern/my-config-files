@@ -20,7 +20,7 @@ For installing easily, I write the following guidance.
 All tested on Vim 7.4 on Ubuntu.
 
 ###Git
-Some important Vim plugins depend on the functionalities provided by Git. Install it first (using Ubuntu's way as an example):
+Some important *Vim* plugins depend on the functionalities provided by *Git*. Install it first (using Ubuntu's way as an example):
 ```
 $ sudo apt-get install git
 ```

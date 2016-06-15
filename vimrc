@@ -267,9 +267,9 @@ let g:ycm_warning_symbol = '>*'
 " Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
 let g:ycm_autoclose_preview_window_after_insertion = 1
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <localleader>gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <localleader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <localleader>gt :YcmCompleter GoTo<CR>
 nnoremap <F4> :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 " }}}
