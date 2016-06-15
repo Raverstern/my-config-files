@@ -26,14 +26,22 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'ARM9/arm-syntax-vim'
 " NERD Tree File Explorer
 Plugin 'scrooloose/nerdtree'
+" nerdtree-git-plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " WinManager
 Plugin 'winmanager'
 " BufExplorer
 Plugin 'bufexplorer.zip'
 " AirLine
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+" AirLine Themes
+Plugin 'vim-airline/vim-airline-themes'
 " Molokai (Only for GUI)
 Plugin 'tomasr/molokai'
+" fugitive.vim
+Plugin 'tpope/vim-fugitive'
+" rainbow parentheses
+Plugin 'luochen1990/rainbow'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -238,6 +246,15 @@ noremap <silent> <F9> :TlistToggle<cr>
 " ==============================================================================
 " Config AirLine {{{
 set laststatus=2
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
 " }}}
 " ==============================================================================
 " Config Winmanager & NERDTree {{{
@@ -260,6 +277,19 @@ function! NERDTree_IsValid()
 endfunction
 " }}}
 
+" nerdtree git plugin -------------------------{{{
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+" }}}
 " }}}
 " ==============================================================================
 " YouCompleteMe {{{
@@ -272,6 +302,10 @@ nnoremap <localleader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <localleader>gt :YcmCompleter GoTo<CR>
 nnoremap <F4> :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" }}}
+" ==============================================================================
+" Rainbow Parentheses {{{
+let g:rainbow_active = 1
 " }}}
 " ==============================================================================
 " force me to change habit {{{
