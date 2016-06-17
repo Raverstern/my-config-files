@@ -48,9 +48,9 @@ then
 	vim "+helptags ." +qall
 fi
 
-# patch the old and buggy WindowsManager
-cd $VIMDIR/bundle/winmanager/plugin
-patch -p0 < $ROOT/winmanager.patch
+# patch WindowsManager to solve its incompatibility with NERDTree
+cd $VIMDIR/bundle/winmanager--Fox/plugin
+patch < $ROOT/winmanager.vim.patch
 
 # return to the original place
 cd $PWD
