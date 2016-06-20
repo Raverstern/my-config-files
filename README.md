@@ -1,14 +1,18 @@
 # My Vim Files
 Friday, 17. June 2016 11:00PM 
 
-This repo stores my Vim configuration files.
+This repo stores my *Vim* configuration files.
 
 ## Plugins
+
 ### Installed by the Shell script, no auto-maintainance
+
 - Vundle (managed by itself after installation)
 - Taglist 4.6 (Up to 4.5 in Github, lack of maintainance)
 - Some vimscript files of mine
+
 ### Installed and maintained by Vundle
+
 - YouCompleteMe (Need further compilation, read its [website][1])
 - GNU ARM assembly syntax highlighting
 - NERDTree
@@ -23,22 +27,27 @@ This repo stores my Vim configuration files.
 - Tabular
 
 ## Dependency
+
 ###Vim 7.4 or above
-All tested on Vim 7.4 on Ubuntu.
+
+All tested on *Vim 7.4* on Ubuntu.
 
 ###Git
+
 Some important *Vim* plugins depend on the functionalities provided by *Git*. Install it first (using Ubuntu's way as an example):
 
 	$ sudo apt-get install git
 
 
 ###Ctags
+
 *Taglist* needs the support from *Ctags*, which is an excellent tool any way. Install it manually:
 
 	$ sudo apt-get install exuberant-ctags
 
 
 ##Installation (Experimental)
+
 First, clone this repo (change the following *YOUR_DIR* to certain directory, of course):
 
 	$ git clone https://github.com/Ricky-Gong/my-vim-files.git YOUR_DIR/
