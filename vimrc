@@ -78,11 +78,16 @@ filetype plugin indent on    " required
 " }}}
 " ==============================================================================
 " Basic Settings {{{
-if has("gui_running")
-	colorscheme molokai
-else
-	colorscheme evening
+if exists('$TMUX')
+	set term=screen-256color
 endif
+
+" if has("gui_running")
+" 	colorscheme molokai
+" else
+" 	colorscheme evening
+" endif
+colorscheme molokai
 
 let mapleader = "-"
 let maplocalleader = "\\"
