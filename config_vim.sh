@@ -54,3 +54,4 @@ patch < $ROOT/winmanager.vim.patch
 
 # return to the original place
 cd $PWD
+
