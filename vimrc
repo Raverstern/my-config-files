@@ -28,22 +28,22 @@ Plugin 'ARM9/arm-syntax-vim'
 Plugin 'scrooloose/nerdtree'
 " nerdtree-git-plugin
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-" WinManager
-Plugin 'winmanager--Fox'
-" BufExplorer
-Plugin 'bufexplorer.zip'
 " AirLine
 Plugin 'vim-airline/vim-airline'
 " AirLine Themes
 Plugin 'vim-airline/vim-airline-themes'
 " Molokai (Only for GUI)
 Plugin 'tomasr/molokai'
-" fugitive.vim
+" fugitive.vim (Git wrapper)
 Plugin 'tpope/vim-fugitive'
 " rainbow parentheses
 Plugin 'luochen1990/rainbow'
 " Tabular
 Plugin 'godlygeek/tabular'
+" vim-multiple-cursors (editting multiple lines)
+Plugin 'terryma/vim-multiple-cursors'
+" indentLine
+Plugin 'Yggdroot/indentLine'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -157,36 +157,32 @@ onoremap al) :<c-u>normal! F)va(<cr>
 set relativenumber
 "}}}
 " ==============================================================================
+" YouCompleteMe {{{
+let g:ycm_warning_symbol = '>*'
+" Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
+"let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
+let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap <localleader>gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <localleader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <localleader>gt :YcmCompleter GoTo<CR>
+nnoremap <F4> :YcmDiags<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" }}}
+" ==============================================================================
 " Taglist (using ctags) {{{
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
-noremap <silent> <F9> :TlistToggle<cr> 
+noremap <silent> <F8> :TlistToggle<cr> 
 " }}}
 " ==============================================================================
-" Config AirLine {{{
-set laststatus=2
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-" }}}
-" ==============================================================================
-" Config WinManager & NERDTree {{{
-" WinManager Part ------------------------------{{{
-let g:winManagerWindowLayout="NERDTree|TagList,BufExplorer"
-let g:winManagerWidth=35
-let g:persistentBehaviour=0
-nnoremap <leader>wm :WMToggle<CR>
-" }}}
-
+" NERDTree {{{
 " NERDTree Part -------------------------{{{
 let g:NERDTree_title="[NERD Tree]"
+let NERDTreeWinPos="right"
+let NERDTreeQuitOnOpen=1
+
+noremap <silent> <F9> :NERDTreeToggle<cr> 
 
 function! NERDTree_Start()  
     exec 'NERDTree'  
@@ -212,41 +208,21 @@ let g:NERDTreeIndicatorMapCustom = {
 " }}}
 " }}}
 " ==============================================================================
-" YouCompleteMe {{{
-let g:ycm_warning_symbol = '>*'
-" Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
-let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
-let g:ycm_autoclose_preview_window_after_insertion = 1
-nnoremap <localleader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <localleader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <localleader>gt :YcmCompleter GoTo<CR>
-nnoremap <F4> :YcmDiags<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+" AirLine {{{
+set laststatus=2
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
 " }}}
 " ==============================================================================
 " Rainbow Parentheses {{{
 let g:rainbow_active = 1
-" }}}
-" ==============================================================================
-" force me to change habit {{{
-"inoremap <esc> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-" }}}
-" ==============================================================================
-" Personal information {{{
-" e-mail address
-iabbrev @@ ricky.gong@foxmail.com
-" copyright declaration
-iabbrev ccopy Copyright 2015 Ricky Gong, all rights reserved.
-" signature
-iabbrev ssig ----- <cr>Ricky Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
 " }}}
 " ==============================================================================
 " FileType-specific Settings {{{
@@ -327,5 +303,26 @@ augroup filetype_shell_script
 augroup END
 " }}}
 
+" }}}
+" ==============================================================================
+" force me to change habit {{{
+"inoremap <esc> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+" }}}
+" ==============================================================================
+" Personal information {{{
+" e-mail address
+iabbrev @@ ricky.gong@foxmail.com
+" copyright declaration
+iabbrev ccopy Copyright 2015 Ricky Gong, all rights reserved.
+" signature
+iabbrev ssig ----- <cr>Ricky Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
 " }}}
 " ==============================================================================
