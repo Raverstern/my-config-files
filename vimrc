@@ -44,6 +44,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 " indentLine
 Plugin 'Yggdroot/indentLine'
+" Matchit
+Plugin 'edsono/vim-matchit'
+" delimitMate
+Plugin 'Raimondi/delimitMate'
+" vim-markdown
+Plugin 'plasticboy/vim-markdown'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -225,6 +231,20 @@ let g:airline_symbols.branch = '⎇'
 let g:rainbow_active = 1
 " }}}
 " ==============================================================================
+" Tabularize {{{
+if exists(":Tabularize")
+    nmap <leader>a= :Tabularize /=<CR>
+    vmap <leader>a= :Tabularize /=<CR>
+    nmap <leader>a: :Tabularize /:\zs<CR>
+    vmap <leader>a: :Tabularize /:\zs<CR>
+endif
+" }}}
+" ==============================================================================
+" delimitMate {{{
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+" }}}
+" ==============================================================================
 " FileType-specific Settings {{{
 
 " C file settings -----------------------------------------------{{{
@@ -300,6 +320,14 @@ augroup END
 augroup filetype_shell_script
 	autocmd!
 	autocmd FileType sh setlocal number
+augroup END
+" }}}
+
+" Html/CSS settings ----------------------------------------------------{{{
+augroup filetype_html_css
+	autocmd!
+	autocmd FileType html,css setlocal number
+	autocmd FileType html,css set tabstop=2 shiftwidth=2 expandtab
 augroup END
 " }}}
 
