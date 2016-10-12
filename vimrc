@@ -96,7 +96,7 @@ endif
 colorscheme molokai
 
 let mapleader = "-"
-let maplocalleader = "\\"
+let maplocalleader = "="
 
 " edit/source my vimrc.
 nnoremap <leader>ev :split $MYVIMRC<cr>
@@ -168,11 +168,9 @@ let g:ycm_warning_symbol = '>*'
 " Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 "let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
 let g:ycm_autoclose_preview_window_after_insertion = 1
-nnoremap <localleader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <localleader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <localleader>gt :YcmCompleter GoTo<CR>
-nnoremap <F4> :YcmDiags<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+
+" More configs are in <Cpp Filetype-specific Settings>
+
 " }}}
 " ==============================================================================
 " Taglist (using ctags) {{{
@@ -247,24 +245,23 @@ let delimitMate_expand_space = 1
 " ==============================================================================
 " FileType-specific Settings {{{
 
-" C file settings -----------------------------------------------{{{
-augroup filetype_c
+" C/C++ file settings -----------------------------------------------{{{
+augroup filetype_c_cpp
 	autocmd!
 	" comment out the current line
-	autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
+	autocmd FileType c,cpp nnoremap <buffer> <localleader>c I//<esc>
 	" supplement semicolon at the end of current line
-	autocmd FileType c nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
+	autocmd FileType c,cpp nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
 	" show line number
-	autocmd FileType c setlocal number
-augroup END
-" }}}
-
-" Cpp file settings -----------------------------------------------{{{
-augroup filetype_cpp
-	autocmd!
-	autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
-	autocmd FileType cpp nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
-	autocmd FileType cpp setlocal number
+	autocmd FileType c,cpp setlocal number
+	" from Ycm
+	autocmd FileType c,cpp nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
+	autocmd FileType c,cpp nnoremap <localleader>f :YcmCompleter GoToDefinition<CR>
+	autocmd FileType c,cpp nnoremap <localleader>g :YcmCompleter GoTo<CR>
+	autocmd FileType c,cpp nnoremap <localleader>t :YcmCompleter GetType<CR>
+	autocmd FileType c,cpp nnoremap <localleader>f :YcmCompleter FixIt<CR>
+	autocmd FileType c,cpp nnoremap <F4> :YcmDiags<CR>
+	autocmd FileType c,cpp nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 augroup END
 " }}}
 

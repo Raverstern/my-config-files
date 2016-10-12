@@ -2,7 +2,7 @@
 
 PWD=$(pwd) # current directory
 ROOT=$(cd `dirname $0`; pwd) # path of the repo; must be absolute
-VIMDIR='~/.vim'
+VIMDIR='/home/ricky/.vim'
 
 # detect if git has been installed, complain and quit if no.
 if [ -z `which git` ]
@@ -42,15 +42,15 @@ if [ ! -f $VIMDIR/taglist.vim ]
 then
 	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
 	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
-	unzip $VIMDIR/taglist_46.zip # adding taglist.vim into plugin/, and taglist.txt into doc/
+	unzip $VIMDIR/taglist_46.zip -d $VIMDIR# adding taglist.vim into plugin/, and taglist.txt into doc/
 	# generate help tags
 	cd $VIMDIR/doc
 	vim "+helptags ." +qall
 fi
 
 # patch WindowsManager to solve its incompatibility with NERDTree
-cd $VIMDIR/bundle/winmanager--Fox/plugin
-patch < $ROOT/winmanager.vim.patch
+#cd $VIMDIR/bundle/winmanager--Fox/plugin
+#patch < $ROOT/winmanager.vim.patch
 
 # return to the original place
 cd $PWD
