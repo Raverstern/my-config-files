@@ -164,6 +164,12 @@ set relativenumber
 "}}}
 " ==============================================================================
 " YouCompleteMe {{{
+
+" disable YCM if VIM's version < 7.4.143
+if !has("patch-7.4.143")
+	let g:loaded_youcompleteme=1
+endif
+
 let g:ycm_warning_symbol = '>*'
 " Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 "let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']

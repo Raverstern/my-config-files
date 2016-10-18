@@ -3,7 +3,7 @@
 ROOT=$(cd `dirname $0`; pwd) # path of the repo; must be absolute
 
 # if Zsh has not been installed,
-if [ -z "$(zsh --version > /dev/null)" ]
+if [ "$(zsh --version > /dev/null 2&>1 ; echo $?)" -ne 0 ]
 then
 	echo "Zsh should be installed first."
 	RIGHT_ANSWER=0

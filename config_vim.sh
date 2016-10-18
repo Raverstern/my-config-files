@@ -2,7 +2,7 @@
 
 PWD=$(pwd) # current directory
 ROOT=$(cd `dirname $0`; pwd) # path of the repo; must be absolute
-VIMDIR='/home/ricky/.vim'
+VIMDIR="$HOME/.vim"
 
 # detect if git has been installed, complain and quit if no.
 if [ -z `which git` ]
@@ -22,6 +22,18 @@ then
 	git clone https://github.com/VundleVim/Vundle.vim.git $VIMDIR/bundle/Vundle.vim
 fi
 
+# install Taglist 4.6 if it has not been installed.
+if [ ! -f $VIMDIR/taglist.vim ]
+then
+	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
+	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
+	# adding taglist.vim into plugin/, and taglist.txt into doc/
+	unzip   $VIMDIR/taglist_46.zip -d $VIMDIR
+	# generate help tags
+	cd $VIMDIR/doc
+	vim "+helptags ." +qall
+fi
+
 # detect if there's a real .vimrc existing, back it up if yes.
 if [ -f ~/.vimrc -a ! -L ~/.vimrc ]
 then
@@ -34,24 +46,12 @@ ln -sf $ROOT/vimrc		~/.vimrc
 ln -sf $ROOT/grep-operator.vim	$VIMDIR/plugin/grep-operator.vim
 ln -sf $ROOT/toggle.vim		$VIMDIR/plugin/toggle.vim
 
-# run "PluginInstall" command of Vundle
-vim +PluginInstall! +qall
-
-# install Taglist 4.6 if it has not been installed.
-if [ ! -f $VIMDIR/taglist.vim ]
+NUM_FILES_BUNDLE=$(ls $VIMDIR/bundle | wc -l)
+if [ "$NUM_FILES_BUNDLE" -le 2 ]
 then
-	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
-	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
-	unzip $VIMDIR/taglist_46.zip -d $VIMDIR# adding taglist.vim into plugin/, and taglist.txt into doc/
-	# generate help tags
-	cd $VIMDIR/doc
-	vim "+helptags ." +qall
+	# run "PluginInstall" command of Vundle
+	vim +PluginInstall! +qall
 fi
-
-# patch WindowsManager to solve its incompatibility with NERDTree
-#cd $VIMDIR/bundle/winmanager--Fox/plugin
-#patch < $ROOT/winmanager.vim.patch
 
 # return to the original place
 cd $PWD
-
