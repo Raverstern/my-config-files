@@ -45,11 +45,13 @@ Plugin 'terryma/vim-multiple-cursors'
 " indentLine
 Plugin 'Yggdroot/indentLine'
 " Matchit
-Plugin 'edsono/vim-matchit'
+Plugin 'tmhedberg/matchit'
 " delimitMate
 Plugin 'Raimondi/delimitMate'
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
+" Tagbar
+Plugin 'majutsushi/tagbar'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -172,18 +174,23 @@ endif
 
 let g:ycm_warning_symbol = '>*'
 " Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
-"let g:ycm_extra_conf_globlist = ['~/programming/opencv/*']
+let g:ycm_extra_conf_globlist = ['~/programming/opencv/*','~/Documents/LectureWS16/*']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " More configs are in <Cpp Filetype-specific Settings>
 
 " }}}
 " ==============================================================================
-" Taglist (using ctags) {{{
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-noremap <silent> <F8> :TlistToggle<cr> 
+" Taglist (deprecated) {{{
+" let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+" let Tlist_Show_One_File = 1
+" let Tlist_Exit_OnlyWindow = 1
+" noremap <silent> <F8> :TlistToggle<cr> 
+" }}}
+" ==============================================================================
+" Tagbar (using ctags) {{{
+let g:tagbar_left = 1
+noremap <silent> <F8> :TagbarToggle<cr> 
 " }}}
 " ==============================================================================
 " NERDTree {{{
@@ -262,7 +269,7 @@ augroup filetype_c_cpp
 	autocmd FileType c,cpp setlocal number
 	" from Ycm
 	autocmd FileType c,cpp nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
-	autocmd FileType c,cpp nnoremap <localleader>f :YcmCompleter GoToDefinition<CR>
+	autocmd FileType c,cpp nnoremap <localleader>d :YcmCompleter GoToDefinition<CR>
 	autocmd FileType c,cpp nnoremap <localleader>g :YcmCompleter GoTo<CR>
 	autocmd FileType c,cpp nnoremap <localleader>t :YcmCompleter GetType<CR>
 	autocmd FileType c,cpp nnoremap <localleader>f :YcmCompleter FixIt<CR>
@@ -289,10 +296,20 @@ augroup END
 augroup filetype_python
 	autocmd!
 	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType python setlocal number
 	" 4 spaces for showing, auto-indenting and expanding a tab
 	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
-	autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab number
+augroup END
+" }}}
+
+" Matlab file settings -----------------------------------------------{{{
+augroup filetype_matlab
+	autocmd!
+	autocmd FileType matlab nnoremap <buffer> <localleader>c I%<esc>
+	autocmd FileType matlab setlocal number
+	" 4 spaces for showing, auto-indenting and expanding a tab
+	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
+	autocmd FileType matlab set tabstop=4 shiftwidth=4 expandtab
 augroup END
 " }}}
 

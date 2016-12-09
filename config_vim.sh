@@ -22,17 +22,17 @@ then
 	git clone https://github.com/VundleVim/Vundle.vim.git $VIMDIR/bundle/Vundle.vim
 fi
 
-# install Taglist 4.6 if it has not been installed.
-if [ ! -f $VIMDIR/taglist.vim ]
-then
-	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
-	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
-	# adding taglist.vim into plugin/, and taglist.txt into doc/
-	unzip   $VIMDIR/taglist_46.zip -d $VIMDIR
-	# generate help tags
-	cd $VIMDIR/doc
-	vim "+helptags ." +qall
-fi
+# install Taglist 4.6 if it has not been installed. (deprecated)
+# if [ ! -f $VIMDIR/taglist.vim ]
+# then
+# 	TAGLIST_46='http://www.vim.org/scripts/download_script.php?src_id=19574'
+# 	wget -O $VIMDIR/taglist_46.zip $TAGLIST_46
+# 	# adding taglist.vim into plugin/, and taglist.txt into doc/
+# 	unzip   $VIMDIR/taglist_46.zip -d $VIMDIR
+# 	# generate help tags
+# 	cd $VIMDIR/doc
+# 	vim "+helptags ." +qall
+# fi
 
 # detect if there's a real .vimrc existing, back it up if yes.
 if [ -f ~/.vimrc -a ! -L ~/.vimrc ]
