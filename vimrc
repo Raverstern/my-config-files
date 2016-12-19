@@ -266,7 +266,7 @@ augroup filetype_c_cpp
 	" supplement semicolon at the end of current line
 	autocmd FileType c,cpp nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
 	" show line number
-	autocmd FileType c,cpp setlocal number
+	autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab number
 	" from Ycm
 	autocmd FileType c,cpp nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
 	autocmd FileType c,cpp nnoremap <localleader>d :YcmCompleter GoToDefinition<CR>
