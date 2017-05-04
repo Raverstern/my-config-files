@@ -64,12 +64,26 @@ bindkey -e
 export PYTHONSTARTUP=~/.pythonrc
 
 # TensorFlow
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
-export CUDA_HOME=/usr/local/cuda
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+#export CUDA_HOME=/usr/local/cuda
 # End
 
 # added by Anaconda3 4.2.0 installer
 export PATH="/home/ricky/software/anaconda3/bin:$PATH"
+
+# added by anaconda2 4.3.1 installer
+export PATH="/home/ricky/software/anaconda2/bin:$PATH"
+
+# Project of Hands-on Deep Learning
+## CUDA
+export PATH="/usr/local/cuda-8.0/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+## Theano
+export CUDA_ROOT="/usr/local/cuda-8.0"
+## libgpuarray
+export CPATH=$CPATH:~/.local/include
+export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -91,7 +105,8 @@ export PATH="/home/ricky/software/anaconda3/bin:$PATH"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Example aliases
 # alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="vim ~/.oh-my-zsh"
+alias cls='printf "\033c"'

@@ -100,6 +100,9 @@ colorscheme molokai
 let mapleader = "-"
 let maplocalleader = "="
 
+set fileencodings=utf-8,gb18030,gb2312,gbk,latin1
+
+
 " edit/source my vimrc.
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
