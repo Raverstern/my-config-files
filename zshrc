@@ -110,3 +110,17 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
 # alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cls='printf "\033c"'
+
+#FSL
+FSLDIR=/usr/share/fsl
+. ${FSLDIR}/5.0/etc/fslconf/fsl.sh
+PATH=${FSLDIR}/5.0/bin:${PATH}
+export FSLDIR PATH
+
+#ANTs
+export PATH=/home/ricky/software/ants:$PATH
+export ANTSPATH=/home/ricky/software/ants
+
+#itksnap
+#export PATH=/home/ricky/software/itksnap/bin:$PATH
+

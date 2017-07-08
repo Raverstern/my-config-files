@@ -178,7 +178,7 @@ endif
 let g:ycm_warning_symbol = '>*'
 " Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_extra_conf_globlist = ['~/programming/opencv/*','~/Documents/LectureWS16/*']
-let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " More configs are in <Cpp Filetype-specific Settings>
 
@@ -193,6 +193,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " ==============================================================================
 " Tagbar (using ctags) {{{
 let g:tagbar_left = 1
+let g:tagbar_autofocus = 1
 noremap <silent> <F8> :TagbarToggle<cr> 
 " }}}
 " ==============================================================================
@@ -246,12 +247,10 @@ let g:rainbow_active = 1
 " }}}
 " ==============================================================================
 " Tabularize {{{
-if exists(":Tabularize")
-    nmap <leader>a= :Tabularize /=<CR>
-    vmap <leader>a= :Tabularize /=<CR>
-    nmap <leader>a: :Tabularize /:\zs<CR>
-    vmap <leader>a: :Tabularize /:\zs<CR>
-endif
+nmap <leader>a= :Tabularize /=\zs<CR>
+vmap <leader>a= :Tabularize /=\zs<CR>
+nmap <leader>a: :Tabularize /:\zs<CR>
+vmap <leader>a: :Tabularize /:\zs<CR>
 " }}}
 " ==============================================================================
 " delimitMate {{{
@@ -302,6 +301,9 @@ augroup filetype_python
 	" 4 spaces for showing, auto-indenting and expanding a tab
 	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
 	autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab number
+	" from Ycm
+	autocmd FileType python nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
+	autocmd FileType python nnoremap <localleader>d :YcmCompleter GoToDefinition<CR>
 augroup END
 " }}}
 
