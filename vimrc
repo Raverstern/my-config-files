@@ -90,11 +90,11 @@ if exists('$TMUX')
 	set term=screen-256color
 endif
 
-" if has("gui_running")
-" 	colorscheme molokai
-" else
-" 	colorscheme evening
-" endif
+if has("gui_running")
+	set guifont=Hack\ 10
+	set guioptions-=T
+	set guioptions-=r
+endif
 colorscheme molokai
 
 let mapleader = "-"
@@ -111,15 +111,15 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap kj <esc>
 
 " fast help
-nnoremap <leader>h :help 
+"nnoremap <leader>h :help 
 
 " move the current line downward/upward.
-noremap <leader>- ddp
-noremap <leader>_ kddpk
+"noremap <leader>- ddp
+"noremap <leader>_ kddpk
 
 " uppercase the current word.
-inoremap <leader><c-u> <esc>viwUi
-nnoremap <leader><c-u> viwU
+"inoremap <leader><c-u> <esc>viwUi
+"nnoremap <leader><c-u> viwU
 
 " put into double/single quotes --------------------------{{{
 " put the current word into double/single quotes.
@@ -176,9 +176,10 @@ if !has("patch-7.4.143")
 endif
 
 let g:ycm_warning_symbol = '>*'
-" Example: let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
-let g:ycm_extra_conf_globlist = ['~/programming/opencv/*','~/Documents/LectureWS16/*']
-"let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_extra_conf_globlist = ['./*'] " whitelisted, no confirmation
+"let g:ycm_extra_conf_globlist = ['~/programming/opencv/*','~/Documents/LectureWS16/*']
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " More configs are in <Cpp Filetype-specific Settings>
 
@@ -234,12 +235,26 @@ set laststatus=2
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_right_sep = '«'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = '㏑'
 let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline#extensions#tabline#enabled = 1
+" switch among buffers
+if has("gui_running")
+	nnoremap <c-tab> :bnext<cr>
+	nnoremap <c-s-tab> :bNext<cr>
+	" nnoremap <c-w> :bdelete<cr>
+endif
 " }}}
 " ==============================================================================
 " Rainbow Parentheses {{{
@@ -304,6 +319,15 @@ augroup filetype_python
 	" from Ycm
 	autocmd FileType python nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
 	autocmd FileType python nnoremap <localleader>d :YcmCompleter GoToDefinition<CR>
+augroup END
+" }}}
+
+" Java file settings -----------------------------------------------{{{
+augroup filetype_java
+	autocmd!
+	" 4 spaces for showing, auto-indenting and expanding a tab
+	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
+	autocmd FileType java setlocal tabstop=4 shiftwidth=4 expandtab number
 augroup END
 " }}}
 

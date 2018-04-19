@@ -49,7 +49,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git vi-mode)
 
 # User configuration
 
@@ -58,8 +58,19 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 source $ZSH/oh-my-zsh.sh
 
-# Key binding: declare using Emacs mode explicitly
-bindkey -e
+# Key binding: declare using Vim mode explicitly
+bindkey -v
+# from http://stratus3d.com/blog/2017/10/26/better-vi-mode-in-zshell/
+# Better searching in command mode
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M vicmd '/' history-incremental-search-forward
+# Beginning search with arrow keys
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
 
 export PYTHONSTARTUP=~/.pythonrc
 
@@ -69,21 +80,31 @@ export PYTHONSTARTUP=~/.pythonrc
 # End
 
 # added by Anaconda3 4.2.0 installer
-export PATH="/home/ricky/software/anaconda3/bin:$PATH"
+# export PATH="/home/ricky/software/anaconda3/bin:$PATH"
 
 # added by anaconda2 4.3.1 installer
-export PATH="/home/ricky/software/anaconda2/bin:$PATH"
+# export PATH="/home/ricky/software/anaconda2/bin:$PATH"
 
 # Project of Hands-on Deep Learning
 ## CUDA
-export PATH="/usr/local/cuda-8.0/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
-## Theano
-export CUDA_ROOT="/usr/local/cuda-8.0"
-## libgpuarray
-export CPATH=$CPATH:~/.local/include
-export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
+#export PATH="/usr/local/cuda-8.0/bin:$PATH"
+#export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+### Theano
+#export CUDA_ROOT="/usr/local/cuda-8.0"
+### libgpuarray
+#export CPATH=$CPATH:~/.local/include
+#export LIBRARY_PATH=$LIBRARY_PATH:~/.local/lib
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
+
+# OpenCV 3.3.1
+#export PATH="/home/ricky/software/opencv/3.3.1/install:$PATH"
+# OpenCV 3.4.1
+export PATH="/usr/local/opencv_3.4.1:$PATH"
+
+# Switch to Python3
+alias python=python3
+# Virtual Environment Wrapper
+#alias python=python3 source /usr/local/bin/virtualenvwrapper.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -111,16 +132,6 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.local/lib
 # alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cls='printf "\033c"'
 
-#FSL
-FSLDIR=/usr/share/fsl
-. ${FSLDIR}/5.0/etc/fslconf/fsl.sh
-PATH=${FSLDIR}/5.0/bin:${PATH}
-export FSLDIR PATH
-
-#ANTs
-export PATH=/home/ricky/software/ants:$PATH
-export ANTSPATH=/home/ricky/software/ants
-
-#itksnap
-#export PATH=/home/ricky/software/itksnap/bin:$PATH
+# map CapsLock to Ctrl
+#setxkbmap -option caps:ctrl_modifier
 
