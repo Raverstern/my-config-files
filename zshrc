@@ -73,17 +73,17 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 export KEYTIMEOUT=1
 
 export PYTHONSTARTUP=~/.pythonrc
+# BROWSER
+export BROWSER=chromium-browser
 
-# TensorFlow
-#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
-#export CUDA_HOME=/usr/local/cuda
-# End
-
-# added by Anaconda3 4.2.0 installer
-# export PATH="/home/ricky/software/anaconda3/bin:$PATH"
-
-# added by anaconda2 4.3.1 installer
-# export PATH="/home/ricky/software/anaconda2/bin:$PATH"
+# CUDA (for TF or PyTorch)
+export CUDA_VERSION=9.1
+export CUDA_HOME=/usr/local/cuda-$CUDA_VERSION
+#export PATH="$CUDA_HOME/bin:$PATH"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64"
+export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/extras/CUPTI/lib64
 
 # Project of Hands-on Deep Learning
 ## CUDA
@@ -101,8 +101,12 @@ export PYTHONSTARTUP=~/.pythonrc
 # OpenCV 3.4.1
 export PATH="/usr/local/opencv_3.4.1:$PATH"
 
-# Switch to Python3
-alias python=python3
+# MATLAB
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/R2017b/extern/bin/glnxa64
+
+# map CapsLock to Ctrl
+setxkbmap -option caps:ctrl_modifier
+
 # Virtual Environment Wrapper
 #alias python=python3 source /usr/local/bin/virtualenvwrapper.sh
 
@@ -131,7 +135,5 @@ alias python=python3
 # alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cls='printf "\033c"'
-
-# map CapsLock to Ctrl
-#setxkbmap -option caps:ctrl_modifier
-
+# Switch to Python3
+#alias python=python3

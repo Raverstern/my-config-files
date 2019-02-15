@@ -7,7 +7,7 @@
 "     for Unix and OS/2:  ~/.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
 
-" ==============================================================================
+
 " Vundle Config ----------------------------------------------{{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -18,40 +18,34 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
-" GNU ARM assembly syntax highlighting
-Plugin 'ARM9/arm-syntax-vim'
-" NERD Tree File Explorer
-Plugin 'scrooloose/nerdtree'
-" nerdtree-git-plugin
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-" AirLine
-Plugin 'vim-airline/vim-airline'
-" AirLine Themes
-Plugin 'vim-airline/vim-airline-themes'
-" Molokai (Only for GUI)
-Plugin 'tomasr/molokai'
-" fugitive.vim (Git wrapper)
-Plugin 'tpope/vim-fugitive'
-" rainbow parentheses
-Plugin 'luochen1990/rainbow'
-" Tabular
-Plugin 'godlygeek/tabular'
-" vim-multiple-cursors (editting multiple lines)
-Plugin 'terryma/vim-multiple-cursors'
-" indentLine
-Plugin 'Yggdroot/indentLine'
-" Matchit
-Plugin 'tmhedberg/matchit'
-" delimitMate
-Plugin 'Raimondi/delimitMate'
-" vim-markdown
-Plugin 'plasticboy/vim-markdown'
-" Tagbar
-Plugin 'majutsushi/tagbar'
+Plugin 'VundleVim/Vundle.vim'             " let Vundle manage Vundle, required
+Plugin 'Valloric/YouCompleteMe'           " semantic auto-completor
+Plugin 'scrooloose/nerdtree'              " file explorer
+Plugin 'Xuyuanp/nerdtree-git-plugin'      " git plugin for file explorer
+Plugin 'vim-airline/vim-airline'          " AirLine
+Plugin 'vim-airline/vim-airline-themes'   " AirLine Themes
+Plugin 'tomasr/molokai'                   " colorscheme
+Plugin 'altercation/vim-colors-solarized' " colorscheme
+Plugin 'tpope/vim-fugitive'               " git wrapper
+Plugin 'luochen1990/rainbow'              " use different colors to indicate different layers of parens, brackets, etc.
+Plugin 'godlygeek/tabular'                " text alignment
+Plugin 'terryma/vim-multiple-cursors'     " search and edit multiple matches at once
+Plugin 'Raimondi/delimitMate'             " insert mode auto-completion for quotes, parens, brackets, etc.
+Plugin 'majutsushi/tagbar'                " class/function outline viewer
+Plugin 'airblade/vim-gitgutter'           " shows git diff in the left of the window
+
+"Plugin 'ARM9/arm-syntax-vim'             " GNU ARM assembly syntax highlighting
+"Plugin 'Yggdroot/indentLine'             " indicate indentation (works well for 'shiftwidth'>=4, but doesn't look good for 2)
+"Plugin 'tmhedberg/matchit'               " extend functionality of '%' key to cycle between HTML tags and if-else keywords (yet doesn't work for C/C++ at least)
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+" Brief help {{{
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -69,22 +63,17 @@ Plugin 'majutsushi/tagbar'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
+"}}}
+
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " }}}
-" ==============================================================================
+
+
 " Basic Settings {{{
 if exists('$TMUX')
 	set term=screen-256color
@@ -95,7 +84,8 @@ if has("gui_running")
 	set guioptions-=T
 	set guioptions-=r
 endif
-colorscheme molokai
+set background=dark
+colorscheme solarized
 
 let mapleader = "-"
 let maplocalleader = "="
@@ -111,7 +101,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap kj <esc>
 
 " fast help
-"nnoremap <leader>h :help 
+"nnoremap <leader>h :help
 
 " move the current line downward/upward.
 "noremap <leader>- ddp
@@ -120,6 +110,22 @@ inoremap kj <esc>
 " uppercase the current word.
 "inoremap <leader><c-u> <esc>viwUi
 "nnoremap <leader><c-u> viwU
+
+"" learnt from Jason Turner
+"" video: https://www.youtube.com/watch?v=EJtqHLvAIZE&t=8s
+"" vimrc: https://gist.github.com/lefticus/9310227/e0a7a531979e9b77620c7e6678bcca7926c8cc08
+" highlight search result WHILE typing
+set incsearch
+" highlight cursor line
+hi CursorLine   cterm=underline ctermbg=none ctermfg=none guibg=white guifg=NONE
+set cursorline
+" show tab and trailing spaces
+set lcs=trail:·,tab:»-
+set list
+
+" change working directory to the file being edited
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
 
 " put into double/single quotes --------------------------{{{
 " put the current word into double/single quotes.
@@ -167,7 +173,8 @@ onoremap al) :<c-u>normal! F)va(<cr>
 " always show relative line number of the left
 set relativenumber
 "}}}
-" ==============================================================================
+
+
 " YouCompleteMe {{{
 
 " disable YCM if VIM's version < 7.4.143
@@ -182,22 +189,18 @@ let g:ycm_extra_conf_globlist = ['./*'] " whitelisted, no confirmation
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " More configs are in <Cpp Filetype-specific Settings>
+" }}}
 
-" }}}
-" ==============================================================================
-" Taglist (deprecated) {{{
-" let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-" let Tlist_Show_One_File = 1
-" let Tlist_Exit_OnlyWindow = 1
-" noremap <silent> <F8> :TlistToggle<cr> 
-" }}}
-" ==============================================================================
+
 " Tagbar (using ctags) {{{
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_show_linenumbers = 2
 noremap <silent> <F8> :TagbarToggle<cr> 
 " }}}
-" ==============================================================================
+
+
 " NERDTree {{{
 " NERDTree Part -------------------------{{{
 let g:NERDTree_title="[NERD Tree]"
@@ -229,7 +232,8 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 " }}}
 " }}}
-" ==============================================================================
+
+
 " AirLine {{{
 set laststatus=2
 if !exists('g:airline_symbols')
@@ -256,23 +260,31 @@ if has("gui_running")
 	" nnoremap <c-w> :bdelete<cr>
 endif
 " }}}
-" ==============================================================================
+
+
 " Rainbow Parentheses {{{
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'ctermfgs': ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta'],
+\}
 " }}}
-" ==============================================================================
+
+
 " Tabularize {{{
 nmap <leader>a= :Tabularize /=\zs<CR>
 vmap <leader>a= :Tabularize /=\zs<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 " }}}
-" ==============================================================================
+
+
 " delimitMate {{{
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 " }}}
-" ==============================================================================
+
+
 " FileType-specific Settings {{{
 
 " C/C++ file settings -----------------------------------------------{{{
@@ -283,7 +295,7 @@ augroup filetype_c_cpp
 	" supplement semicolon at the end of current line
 	autocmd FileType c,cpp nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
 	" show line number
-	autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab number
+	autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 expandtab number
 	" from Ycm
 	autocmd FileType c,cpp nnoremap <localleader>k :YcmCompleter GoToDeclaration<CR>
 	autocmd FileType c,cpp nnoremap <localleader>d :YcmCompleter GoToDefinition<CR>
@@ -380,8 +392,19 @@ augroup filetype_html_css
 augroup END
 " }}}
 
+" Cmake file settings -----------------------------------------------{{{
+augroup filetype_cmake
+	autocmd!
+	autocmd FileType cmake nnoremap <buffer> <localleader>c I#<esc>
+	" 4 spaces for showing, auto-indenting and expanding a tab
+	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
+	autocmd FileType cmake setlocal tabstop=4 shiftwidth=4 expandtab number
+augroup END
 " }}}
-" ==============================================================================
+
+" }}}
+
+
 " force me to change habit {{{
 "inoremap <esc> <nop>
 inoremap <up> <nop>
@@ -393,13 +416,21 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 " }}}
-" ==============================================================================
+
+
 " Personal information {{{
 " e-mail address
-iabbrev @@ ricky.gong@foxmail.com
+"iabbrev @@ ricky.gong@foxmail.com
 " copyright declaration
-iabbrev ccopy Copyright 2015 Ricky Gong, all rights reserved.
+"iabbrev ccopy Copyright 2015 Ruiqi Gong, all rights reserved.
 " signature
-iabbrev ssig ----- <cr>Ricky Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
+"iabbrev ssig ----- <cr>Ruiqi Gong<cr>Sun Yat-sen University<cr>ricky.gong@foxmail.com
 " }}}
-" ==============================================================================
+
+
+" Taglist (deprecated) {{{
+" let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+" let Tlist_Show_One_File = 1
+" let Tlist_Exit_OnlyWindow = 1
+" noremap <silent> <F8> :TlistToggle<cr> 
+" }}}
