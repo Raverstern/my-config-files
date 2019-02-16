@@ -84,7 +84,7 @@ if has("gui_running")
 	set guioptions-=T
 	set guioptions-=r
 endif
-set background=dark
+set background=light
 colorscheme solarized
 
 let mapleader = "-"
@@ -99,6 +99,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " fast insert-mode escape
 inoremap kj <esc>
+
+" switch among buffers
+if has("gui_running")
+	nnoremap <c-tab> :bnext<cr>
+	nnoremap <c-s-tab> :bNext<cr>
+	" nnoremap <c-w> :bdelete<cr>
+endif
 
 " fast help
 "nnoremap <leader>h :help
@@ -235,30 +242,47 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 " AirLine {{{
+
 set laststatus=2
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+	let g:airline_symbols = {}
 endif
 
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_right_sep = '«'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline_left_sep = '»'
+"let g:airline_right_sep = '«'
+"let g:airline_symbols.crypt = '🔒'
+"let g:airline_symbols.linenr = '☰'
+"let g:airline_symbols.maxlinenr = '㏑'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.spell = 'Ꞩ'
+"let g:airline_symbols.notexists = '∄'
+"let g:airline_symbols.whitespace = 'Ξ'
 
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+
+" choose a theme (if not follow the vim colorscheme):
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_theme='sol'
+
+" displays all buffers when only one tab opened
 let g:airline#extensions#tabline#enabled = 1
-" switch among buffers
-if has("gui_running")
-	nnoremap <c-tab> :bnext<cr>
-	nnoremap <c-s-tab> :bNext<cr>
-	" nnoremap <c-w> :bdelete<cr>
-endif
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#right_sep = ''
+"let g:airline#extensions#tabline#right_alt_sep = ''
+
+" set bg of 'solarized' airline theme, if not follow vim's setting
+"let g:airline_solarized_bg='dark'
 " }}}
 
 
@@ -363,6 +387,12 @@ augroup filetype_markdown
 	" around header
 	autocmd FileType markdown onoremap <buffer> ah :<c-u>execute "normal! ?^\\(=\\\|-\\)\\{2,}$\r:nohlsearch\rg_vk0"<cr>
 	autocmd FileType markdown setlocal number
+	" move on virtual lines instead of logical lines, for easier navigation in case of having many wrapper long lines
+	" refers to: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+	autocmd FileType markdown noremap <buffer> k gk
+	autocmd FileType markdown noremap <buffer> j gj
+	autocmd FileType markdown noremap <buffer> 0 g0
+	autocmd FileType markdown noremap <buffer> $ g$
 augroup END
 " }}}
 
