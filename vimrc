@@ -33,10 +33,12 @@ Plugin 'terryma/vim-multiple-cursors'     " search and edit multiple matches at 
 Plugin 'Raimondi/delimitMate'             " insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'majutsushi/tagbar'                " class/function outline viewer
 Plugin 'airblade/vim-gitgutter'           " shows git diff in the left of the window
+Plugin 'scrooloose/nerdcommenter'         " inserts comment more easily
 
 "Plugin 'ARM9/arm-syntax-vim'             " GNU ARM assembly syntax highlighting
 "Plugin 'Yggdroot/indentLine'             " indicate indentation (works well for 'shiftwidth'>=4, but doesn't look good for 2)
 "Plugin 'tmhedberg/matchit'               " extend functionality of '%' key to cycle between HTML tags and if-else keywords (yet doesn't work for C/C++ at least)
+"Plugin 'jiangmiao/auto-pairs'            " more powerful auto-completion for quotes, parens, brackets, etc.
 
 
 " All of your Plugins must be added before the following line

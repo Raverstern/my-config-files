@@ -53,11 +53,16 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git vi-mode)
+#plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# for plugin zsh-autosuggestions
+# color code: https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,bg=7"
 
 source $ZSH/oh-my-zsh.sh
 
