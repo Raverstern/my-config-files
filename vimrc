@@ -86,7 +86,7 @@ if has("gui_running")
 	set guioptions-=T
 	set guioptions-=r
 endif
-set background=light
+set background=dark
 colorscheme solarized
 
 let mapleader = "-"
@@ -274,7 +274,7 @@ let g:airline_symbols.maxlinenr = ''
 
 " choose a theme (if not follow the vim colorscheme):
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
-let g:airline_theme='sol'
+let g:airline_theme='dark' " 'sol'
 
 " displays all buffers when only one tab opened
 let g:airline#extensions#tabline#enabled = 1
