@@ -2,72 +2,55 @@
 
 This repo stores my configuration files for Vim, Tmux and Zsh.
 
+## System Configuration
+
+- Terminal: Guake (>= 3.5.1)
+- Font: Ubuntu Mono Regular 11
+- Palette: Solarized Dark Higher Contrast
+- Login Shell: Tmux
+
 ## Vim
 
-### Plugins
-
-#### Installed by the Shell script, no auto-maintainance
+The followings need to be installed manually (or by the provided Shell script)
 
 - Vundle (managed by itself after installation)
-- Taglist 4.6 (Up to 4.5 in Github, lack of maintainance)
-- Some vimscript files of mine
+- Some vimscripts of mine
+- [YouCompleteMe][1] compilation
 
-#### Installed and maintained by Vundle
+Others will be installed and maintained automatically by Vundle.
 
-- YouCompleteMe (Need further compilation, read its [website][1])
-- GNU ARM assembly syntax highlighting
-- NERDTree
-- nerdtree-git-plugin
-- winmanager 2.35 (Need to be patched to solve its incompatibility with NERDTree)
-- bufexplorer
-- AirLine
-- AirLine Themes
-- Molokai (ColorTheme, only for GUI)
-- fugitive.vim
-- rainbow parentheses
-- Tabular
+Dependencies:
 
-### Dependency
+```
+$ sudo apt install git exuberant-ctags
+```
 
-####Vim 7.4 or above
+[1]:http://valloric.github.io/YouCompleteMe/#full-installation-guide
 
-All tested on Vim 7.4 on Ubuntu.
-
-####Git
-
-Some important Vim plugins depend on the functionalities provided by Git. Install it first (using Ubuntu's way as an example):
-
-	$ sudo apt-get install git
-
-
-####Ctags
-
-Taglist needs the support from Ctags, which is an excellent tool any way. Install it manually:
-
-	$ sudo apt-get install exuberant-ctags
-
-
-###Installation (Experimental)
+### Installation (Experimental)
 
 First, clone this repo (change the following `YOUR_DIR` to certain directory, of course):
 
 	$ git clone https://github.com/Ricky-Gong/my-vim-files.git YOUR_DIR/
 	$ cd YOUR_DIR/
 
-
 And then run the config.sh script:
 
 	$ sh ./config.sh
 
 
-That's it!
+## Tmux
 
-##Tmux
+Dependencies:
 
-This repo stores my tmux.conf file.
+- Tmux Plugin Manager (TPM)
+- tmux-resurrect
 
-##Zsh
+## Zsh
 
-This repo stores my zshrc file.
+Dependencies:
 
-[1]:http://valloric.github.io/YouCompleteMe/#full-installation-guide
+- theme: bullet-train
+- plugins: zsh-autosuggestions, zsh-syntax-highlighting
+
+
