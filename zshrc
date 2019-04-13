@@ -5,10 +5,13 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster-new"
+ZSH_THEME="bullet-train"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="amuse"
 # for light theme of agnoster
 # https://github.com/agnoster/agnoster-zsh-theme/issues/2
-PRIMARY_FG=white
+#PRIMARY_FG=white
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,8 +55,8 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
-#plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
+#plugins=(git vi-mode)
+plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
 
@@ -62,7 +65,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 
 # for plugin zsh-autosuggestions
 # color code: https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
-#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,bg=7"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,bg=7"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,3 +148,16 @@ setxkbmap -option caps:ctrl_modifier
 alias cls='printf "\033c"'
 # Switch to Python3
 #alias python=python3
+
+## for ruby gem and Jekyll
+# Install Ruby Gems to ~/gems
+# export GEM_HOME="$HOME/gems"
+# export PATH="$HOME/gems/bin:$PATH"
+
+# Nodejs
+#VERSION=v10.15.3
+#DISTRO=linux-x64
+#export PATH=/home/ricky/software/node-$VERSION-$DISTRO/bin:$PATH
+
+export TERM=xterm-256color
+export COLORTERM=truecolor

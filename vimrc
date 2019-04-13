@@ -25,6 +25,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'      " git plugin for file explorer
 Plugin 'vim-airline/vim-airline'          " AirLine
 Plugin 'vim-airline/vim-airline-themes'   " AirLine Themes
 Plugin 'tomasr/molokai'                   " colorscheme
+Plugin 'ErichDonGubler/vim-sublime-monokai' " colorscheme
 Plugin 'altercation/vim-colors-solarized' " colorscheme
 Plugin 'tpope/vim-fugitive'               " git wrapper
 Plugin 'luochen1990/rainbow'              " use different colors to indicate different layers of parens, brackets, etc.
@@ -34,11 +35,15 @@ Plugin 'Raimondi/delimitMate'             " insert mode auto-completion for quot
 Plugin 'majutsushi/tagbar'                " class/function outline viewer
 Plugin 'airblade/vim-gitgutter'           " shows git diff in the left of the window
 Plugin 'scrooloose/nerdcommenter'         " inserts comment more easily
+Plugin 'plasticboy/vim-markdown'          " syntax highlighting for Markdown
+Plugin 'tpope/vim-liquid'                 " liquid runtime files with Jekyll enhancements
 
+"Plugin 'lifepillar/vim-solarized8'        " colorscheme
 "Plugin 'ARM9/arm-syntax-vim'             " GNU ARM assembly syntax highlighting
 "Plugin 'Yggdroot/indentLine'             " indicate indentation (works well for 'shiftwidth'>=4, but doesn't look good for 2)
 "Plugin 'tmhedberg/matchit'               " extend functionality of '%' key to cycle between HTML tags and if-else keywords (yet doesn't work for C/C++ at least)
 "Plugin 'jiangmiao/auto-pairs'            " more powerful auto-completion for quotes, parens, brackets, etc.
+"Plugin 'octol/vim-cpp-enhanced-highlight'" additional syntax highlighting for C++ (including C++11/14/17)
 
 
 " All of your Plugins must be added before the following line
@@ -87,7 +92,7 @@ if has("gui_running")
 	set guioptions-=r
 endif
 set background=dark
-colorscheme solarized
+colorscheme sublimemonokai
 
 let mapleader = "-"
 let maplocalleader = "="
@@ -126,7 +131,7 @@ endif
 " highlight search result WHILE typing
 set incsearch
 " highlight cursor line
-hi CursorLine   cterm=underline ctermbg=none ctermfg=none guibg=white guifg=NONE
+"hi CursorLine cterm=standout ctermbg=none ctermfg=none gui=standout guibg=NONE guifg=NONE
 set cursorline
 " show tab and trailing spaces
 set lcs=trail:·,tab:»-
@@ -181,6 +186,11 @@ onoremap al) :<c-u>normal! F)va(<cr>
 
 " always show relative line number of the left
 set relativenumber
+
+" use virutla edit for blocks in visual mode
+set virtualedit=block
+
+set tabstop=2 shiftwidth=2 expandtab number
 "}}}
 
 
@@ -311,6 +321,17 @@ let delimitMate_expand_space = 1
 " }}}
 
 
+" NERD commenter {{{
+let NERDSpaceDelims = 1
+let NERDTrimTrailingWhitespace = 1
+" }}}
+
+
+" VIM Markdown {{{
+let g:vim_markdown_folding_disabled = 1
+" }}}
+
+
 " FileType-specific Settings {{{
 
 " C/C++ file settings -----------------------------------------------{{{
@@ -376,14 +397,14 @@ augroup filetype_matlab
 	autocmd FileType matlab setlocal number
 	" 4 spaces for showing, auto-indenting and expanding a tab
 	" http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
-	autocmd FileType matlab set tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType matlab setlocal tabstop=4 shiftwidth=4 expandtab
 augroup END
 " }}}
 
 " Markdown file settings -----------------------------------------------{{{
 augroup filetype_markdown
 	autocmd!
-	autocmd BufNewFile,BufRead *.md set filetype=markdown
+	"autocmd BufNewFile,BufRead *.md set filetype=markdown
 	" inside header
 	autocmd FileType markdown onoremap <buffer> ih :<c-u>execute "normal! ?^\\(=\\\|-\\)\\{2,}$\r:nohlsearch\rkvg_"<cr>
 	" around header
@@ -412,15 +433,14 @@ augroup END
 " Shell Scripts file settings ----------------------------------------------------{{{
 augroup filetype_shell_script
 	autocmd!
-	autocmd FileType sh setlocal number
+	autocmd FileType sh setlocal tabstop=2 shiftwidth=2 expandtab number
 augroup END
 " }}}
 
 " Html/CSS settings ----------------------------------------------------{{{
 augroup filetype_html_css
 	autocmd!
-	autocmd FileType html,css setlocal number
-	autocmd FileType html,css set tabstop=2 shiftwidth=2 expandtab
+	autocmd FileType html,css setlocal tabstop=2 shiftwidth=2 expandtab number
 augroup END
 " }}}
 
