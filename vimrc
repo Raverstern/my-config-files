@@ -337,8 +337,8 @@ let g:vim_markdown_folding_disabled = 1
 " C/C++ file settings -----------------------------------------------{{{
 augroup filetype_c_cpp
 	autocmd!
-	" comment out the current line
-	autocmd FileType c,cpp nnoremap <buffer> <localleader>c I//<esc>
+	" comment out the current line (replaced by NERDCommenter)
+	"autocmd FileType c,cpp nnoremap <buffer> <localleader>c I//<esc>
 	" supplement semicolon at the end of current line
 	autocmd FileType c,cpp nnoremap <buffer> <localleader>; :execute "normal! mqA;\e`q"<cr>
 	" show line number
