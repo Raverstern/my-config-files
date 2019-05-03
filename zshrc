@@ -88,7 +88,7 @@ export PYTHONSTARTUP=~/.pythonrc
 export BROWSER=chromium-browser
 
 # CUDA (for TF or PyTorch)
-export CUDA_VERSION=9.1
+export CUDA_VERSION=10.1
 export CUDA_HOME=/usr/local/cuda-$CUDA_VERSION
 #export PATH="$CUDA_HOME/bin:$PATH"
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64"
@@ -110,10 +110,10 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/extras/CUPTI/lib64
 # OpenCV 3.3.1
 #export PATH="/home/ricky/software/opencv/3.3.1/install:$PATH"
 # OpenCV 3.4.1
-export PATH="/usr/local/opencv_3.4.1:$PATH"
+#export PATH="/usr/local/opencv_3.4.1:$PATH"
 
 # MATLAB
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/R2017b/extern/bin/glnxa64
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/R2017b/extern/bin/glnxa64
 
 # map CapsLock to Ctrl
 setxkbmap -option caps:ctrl_modifier

@@ -37,6 +37,9 @@ Plugin 'airblade/vim-gitgutter'           " shows git diff in the left of the wi
 Plugin 'scrooloose/nerdcommenter'         " inserts comment more easily
 Plugin 'plasticboy/vim-markdown'          " syntax highlighting for Markdown
 Plugin 'tpope/vim-liquid'                 " liquid runtime files with Jekyll enhancements
+" haven't found good keymaps
+Plugin 'SirVer/ultisnips'                 " UltiSnips engine
+Plugin 'honza/vim-snippets'               " snippets for various languages
 
 "Plugin 'lifepillar/vim-solarized8'        " colorscheme
 "Plugin 'ARM9/arm-syntax-vim'             " GNU ARM assembly syntax highlighting
@@ -207,7 +210,27 @@ let g:ycm_extra_conf_globlist = ['./*'] " whitelisted, no confirmation
 "let g:ycm_extra_conf_globlist = ['~/programming/opencv/*','~/Documents/LectureWS16/*']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" collaborate with UltiSnips (https://gist.github.com/lencioni/dff45cd3d1f0e5e23fe6)
+"let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
+
 " More configs are in <Cpp Filetype-specific Settings>
+" }}}
+
+
+" UltiSnips {{{
+" collaborate with YCM (https://gist.github.com/lencioni/dff45cd3d1f0e5e23fe6)
+"let g:UltiSnipsExpandTrigger = '<tab>'
+"let g:UltiSnipsJumpForwardTrigger = '<tab>'
+"let g:UltiSnipsJumpBackwardTrigger = '<c-tab>'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+" default one (<c-tab>) doesn't work
+let g:UltiSnipsListSnippets="<c-space>"
+
+let g:UltiSnipsEditSplit = "vertical"
 " }}}
 
 
@@ -225,8 +248,10 @@ noremap <silent> <F8> :TagbarToggle<cr>
 let g:NERDTree_title="[NERD Tree]"
 let NERDTreeWinPos="right"
 let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI=1
 
 noremap <silent> <F9> :NERDTreeToggle<cr> 
+" noremap <silent> <F9> :NERDTreeFind<cr> 
 
 function! NERDTree_Start()  
     exec 'NERDTree'  
