@@ -163,8 +163,9 @@ nnoremap <leader>W :match<cr>
 " }}}
 
 " auto insert \v when searching -------------{{{
-nnoremap / /\v
-nnoremap ? ?\v
+" \c: ingore cases
+nnoremap / /\v\c
+nnoremap ? ?\v\c
 " }}}
 
 " super h/l: move to the beginning/end of the current line ----{{{

@@ -151,13 +151,13 @@ alias cls='printf "\033c"'
 
 ## for ruby gem and Jekyll
 # Install Ruby Gems to ~/gems
-# export GEM_HOME="$HOME/gems"
-# export PATH="$HOME/gems/bin:$PATH"
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
 
 # Nodejs
 #VERSION=v10.15.3
 #DISTRO=linux-x64
 #export PATH=/home/ricky/software/node-$VERSION-$DISTRO/bin:$PATH
 
-export TERM=xterm-256color
+#export TERM=xterm-256color
 export COLORTERM=truecolor
