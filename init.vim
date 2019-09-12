@@ -1,3 +1,6 @@
+" Init file for NeoVim
+" Place it in ~/.config/nvim/init.vim
+
 " vim-plug {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
